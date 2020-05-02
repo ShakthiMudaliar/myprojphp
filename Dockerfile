@@ -48,7 +48,7 @@ EXPOSE 80
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 
 #Copy files to webserver 
-COPY Online-Compiler /var/www/html/
+COPY myprojphp /var/www/html/
 
 #Change Permission
 RUN chmod -R 777 /var/www/html/
