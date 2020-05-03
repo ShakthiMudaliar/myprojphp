@@ -56,19 +56,19 @@ RUN chmod -R 777 /var/www/html/
 # Remove Default index.html
 RUN rm /var/www/html/index.html
 
-sudo apt-get --purge remove mysql-server mysql-common mysql-client.
+RUN sudo apt-get --purge remove mysql-server mysql-common mysql-client.
 
-sudo apt update && sudo apt dist-upgrade && sudo apt autoremove.
+RUN sudo apt update && sudo apt dist-upgrade && sudo apt autoremove.
 
-sudo apt-get install -y mysql-server mysql-client.
+RUN sudo apt-get install -y mysql-server mysql-client.
 
-mysql -u [root] -p mobile < https://github.com/ShakthiMudaliar/myprojphp/mobile.sql
+RUN mysql -u [root] -p mobile < https://github.com/ShakthiMudaliar/myprojphp/mobile.sql
 # Create dir for database data  
-mkdir -p /opt/mysql
+RUN mkdir -p /opt/mysql
 
 
 # Create MySQL container 
-docker run -d \
+RUN docker run -d \
     --name mobile-mysql \
     --network mobile \
     -e MYSQL_ROOT_PASSWORD="" \
@@ -80,7 +80,7 @@ docker run -d \
 # PMA_HOST is the IP or domain of the MySQL server,
 # so we can use the MySQL container name as the domain
 # cause the Docker network create the route as a DNS server.
-docker run -d \
+RUN docker run -d \
     --name mobile-phpmyadmin \
     --network mobile \
     -e PMA_HOST=mobile-mysql \
