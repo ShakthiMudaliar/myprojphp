@@ -31,6 +31,7 @@ RUN apt-get install -y default-jdk
 #Install applications
 RUN apt-get -y install apache2
 RUN apt-get -y install php libapache2-mod-php
+RUN apt-get -y install phpmyadmin
 
 #Remove any unnecessary files
 RUN apt-get clean
