@@ -14,10 +14,24 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/*
 
+#Install C/C++ Compiler
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
+RUN apt-get update -y
+RUN apt-get install -y gcc-4.8
+RUN apt-get install -y g++-4.8
+RUN ln -f -s /usr/bin/gcc-4.8 /usr/bin/gcc
+RUN ln -f -s /usr/bin/g++-4.8 /usr/bin/g++
+
+#Install Java Compiler
+RUN add-apt-repository -y ppa:openjdk-r/ppa  
+RUN apt-get update -y  
+RUN apt install -y openjdk-8-jre
+RUN apt-get install -y default-jdk
+
 #Install applications
-RUN apt-get install apache2 apache2-doc apache2-utils
+RUN apt-get install apache2 
 RUN apt-get -y install php libapache2-mod-php
-RUN apt-get install -y phpmyadmin
+
 
 
 #Remove any unnecessary files
