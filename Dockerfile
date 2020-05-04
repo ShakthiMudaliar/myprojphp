@@ -15,8 +15,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 #Install applications
-RUN sudo apt-get install apache2 apache2-doc apache2-utils
+RUN apt-get install apache2 apache2-doc apache2-utils
 RUN apt-get -y install php libapache2-mod-php
+RUN apt-get install -y phpmyadmin
 
 
 #Remove any unnecessary files
